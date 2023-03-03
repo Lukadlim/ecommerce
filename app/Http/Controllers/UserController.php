@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -34,7 +36,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->all();
+
+        $user['password'] = bcrypt($request->password);
+
+        $user = User::create($user);
+
+        return Redirect::route('site.home');
     }
 
     /**
