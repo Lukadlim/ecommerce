@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.create');
+        //
     }
 
     /**
@@ -43,6 +43,11 @@ class UserController extends Controller
         $user = User::create($user);
 
         return Redirect::route('site.home');
+    }
+
+    public function login(Request $request)
+    {
+        
     }
 
     /**
