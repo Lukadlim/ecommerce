@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -45,9 +46,16 @@ class UserController extends Controller
         return Redirect::route('site.home');
     }
 
-    public function login(Request $request)
+    public function auth(Request $request)
     {
-        
+        $data = $request->all();
+
+        if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
+            $request->session()->regenerate();
+            return Redirect::route('site.home');
+        } else {
+            return Redirect::back()->with('error', 'メールアドレスまたはパスワードが違います');
+        }
     }
 
     /**

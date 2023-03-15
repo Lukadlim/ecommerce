@@ -35,3 +35,4 @@ Route::view('/user/login', 'user.login')->name('user.login');
 Route::view('/user/register', 'user.create')->name('user.register');
 
 Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+Route::post('user/auth', [UserController::class, 'auth'])->name('user.auth');
