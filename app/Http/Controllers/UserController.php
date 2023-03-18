@@ -37,11 +37,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'lastname' => 'required|',
+            'firstname' => 'required|string',
+            'email' => 'unique:users|required',
+            'password' => 'required'
+            
+        ]);
+
         $user = $request->all();
 
         $user['password'] = bcrypt($request->password);
 
         $user = User::create($user);
+
+        Auth::login($user);
 
         return Redirect::route('site.home');
     }
@@ -56,6 +66,15 @@ class UserController extends Controller
         } else {
             return Redirect::back()->with('error', 'メールアドレスまたはパスワードが違います');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::route('site.home');
     }
 
     /**
