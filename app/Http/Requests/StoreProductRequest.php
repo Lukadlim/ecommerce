@@ -24,7 +24,7 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>        'required|string',
+            'name' =>        'required|string|not_regex:/\d/',
             'description' => 'nullable|string',
             'price' =>       'required|integer',
             'image' =>       'nullable|image',
