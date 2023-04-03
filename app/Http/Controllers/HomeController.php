@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
-
+        
         return view('site.home', compact('products'));
     }
 

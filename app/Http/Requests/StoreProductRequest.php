@@ -24,11 +24,20 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>        'required|string|not_regex:/\d/',
+            'name' =>        'required|string|regex:/^[a-zA-Zぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]*$/',
             'description' => 'nullable|string',
             'price' =>       'required|integer',
             'image' =>       'nullable|image',
             'stock' =>       'required|integer',
+        ];
+
+        
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.regex' => ':attributeに文字しか入力しないでください',
         ];
     }
 }

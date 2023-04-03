@@ -38,12 +38,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'lastname' => 'required|regex:/^[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]*$/',
-            'firstname' => 'required|string',
+            'lastname' => 'required|regex:/^[a-zA-Zぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]*$/',
+            'firstname' => 'required|regex:/^[a-zA-Zぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]*$/',
             'email' => 'unique:users|required',
             'password' => 'required'
-            
-        ]);
+        ], [
+            'lastname.regex' => '姓に文字しか入力しないでください',
+            'firstname.regex' => '名に文字しか入力しないでください'
+        ]
+        );
 
         $user = $request->all();
 
