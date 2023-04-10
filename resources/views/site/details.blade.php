@@ -24,10 +24,13 @@
 
                 @endif
                 
-                <div class="flex border-t-2 border-gray-100 mt-6 pt-6">
-                    <span class="title-font font-medium text-2xl text-gray-900">￥{{number_format($product->price, 0, '', '.')}}</span>
-                    <a class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">買う</a>
-                </div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="flex border-t-2 border-gray-100 mt-6 pt-6">
+                        <span class="title-font font-medium text-2xl text-gray-900">￥{{number_format($product->price, 0, '', '.')}}</span>
+                        <button type="submit" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">買う</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

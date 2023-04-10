@@ -37,3 +37,5 @@ Route::get('user/logout', [UserController::class, 'logout'])->name('user.logout'
 
 Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 Route::post('user/auth', [UserController::class, 'auth'])->name('user.auth');
+
+Route::view('/site/cart', 'site.cart')->name('site.cart');

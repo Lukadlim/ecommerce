@@ -22,6 +22,11 @@
                 </svg>
                 <span class="ml-3 text-xl">My store</span>
             </a>
+
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a href="{{ route('site.cart') }}" class="mr-5 hover:text-gray-900">カート <span class="rounded bg-indigo-500 w-96 px-3 text-white">0</span></a>
+            </nav>
+
             <div class="flex items-center">
                 <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
                     <a href="/" class="mr-5 hover:text-gray-900">ホーム</a>
