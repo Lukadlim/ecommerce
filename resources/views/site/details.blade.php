@@ -24,7 +24,7 @@
 
                 @endif
                 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('site.addcart') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="flex border-t-2 border-gray-100 mt-6 pt-6">
                         <span class="title-font font-medium text-2xl text-gray-900">￥{{number_format($product->price, 0, '', '.')}}</span>
@@ -35,9 +35,15 @@
 
                     <div class="relative pt-4">
                         <label for="quantity" class="leading-7 text-sm text-gray-600">数量</label>
-                        <input value="1" min="1" type="number" id="quantity" name="quantity"
+                        <input value="1" min="1" max="{{ $product->stock }}" type="number" id="quantity" name="quantity"
                                 class="w-16 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                     </div>
+
+                    <input type="hidden" name="image" value="{{ $product->image }}">
+                    <input type="hidden" name="name" value="{{ $product->name }}">
+                    <input type="hidden" name="price" value="{{ $product->price }}">
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    
                 </form>
             </div>
         </div>

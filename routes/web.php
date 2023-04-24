@@ -6,6 +6,7 @@ use Illuminate\Routing\RouteAction;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 Use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,5 @@ Route::get('user/logout', [UserController::class, 'logout'])->name('user.logout'
 Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 Route::post('user/auth', [UserController::class, 'auth'])->name('user.auth');
 
-Route::view('/site/cart', 'site.cart')->name('site.cart');
+Route::get('/site/cart', [CartController::class, 'cartlist'])->name('site.cart');
+Route::post('/site/cart', [CartController::class, 'addCart'])->name('site.addcart');
